@@ -3,11 +3,13 @@ version: '2'
 services:
   ctfd:
     build: .
+    image: tiger3080/ctfplatform_ctfd:start
     user: root
     restart: always
     ports:
       - "8000:8000"
     environment:
+      - SECRET_KEY= Tiger3080
       - UPLOAD_FOLDER=/var/uploads
       - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
       - REDIS_URL=redis://cache:6379
@@ -27,7 +29,7 @@ services:
         internal:
 
   nginx:
-    image: nginx:stable
+    image: tiger3080/ctfplatform_nginx:start
     restart: always
     volumes:
       - ./conf/nginx/http.conf:/etc/nginx/nginx.conf
@@ -37,7 +39,7 @@ services:
       - ctfd
 
   db:
-    image: mariadb:10.4.12
+    image: tiger3080/ctfplatform_db:start
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=ctfd
@@ -52,7 +54,7 @@ services:
     command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800, --log-warnings=0]
 
   cache:
-    image: redis:4
+    image: tiger3080/ctfplatform_cache:start
     restart: always
     volumes:
     - .data/redis:/data
