@@ -32,15 +32,6 @@ services:
         default:
         internal:
 
-  nginx:
-    image: tiger3080/ctfplatform_nginx:start
-    restart: always
-    volumes:
-      - ./conf/nginx/http.conf:/etc/nginx/nginx.conf
-    ports:
-      - 80:80
-    depends_on:
-      - ctfd
 
   db:
     image: tiger3080/ctfplatform_db:start
