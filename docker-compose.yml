@@ -1,6 +1,10 @@
 version: '2'
 
 services:
+  myserver:
+    image : myserver
+    ports:
+    - "1111:3080"
   ctfd:
     build: .
     image: tiger3080/ctfplatform_ctfd:start
@@ -9,7 +13,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - SECRET_KEY= Tiger3080
+      - SECRET_KEY= Tiger3080  
       - UPLOAD_FOLDER=/var/uploads
       - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
       - REDIS_URL=redis://cache:6379
