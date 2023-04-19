@@ -2,9 +2,9 @@ version: '2'
 
 services:
   myserver:
-    image : myserver
+    image : tiger3080/ctfplatform_web1:start
     ports:
-    - "1111:3080"
+    - "3080:80"
   ctfd:
     build: .
     image: tiger3080/ctfplatform_ctfd:start
