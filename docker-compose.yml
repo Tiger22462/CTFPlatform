@@ -1,6 +1,10 @@
 version: '2'
 
 services:
+  myserver2:
+    image : chanachon123/ctfplatform_web2:start
+    ports:
+    - "3081:80"
   myserver:
     image : tiger3080/ctfplatform_web1:start
     ports:
